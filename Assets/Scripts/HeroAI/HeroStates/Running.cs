@@ -29,7 +29,7 @@ public class Running : BaseState
         base.UpdatePhysics();
         //Vector2 runningForce = 2.1f * Vector2.right * ((HeroSM)stateMachine).speed;
 
-        sm.rigidbody.MovePosition(sm.rigidbody.position + Time.deltaTime * Vector2.right * ((HeroSM)stateMachine).speed);
+        sm.rigidbody.MovePosition(sm.rigidbody.position + Time.deltaTime * Vector2.right);
         //sm.rigidbody.AddForce(runningForce);
         //Debug.Log(runningForce);
     }

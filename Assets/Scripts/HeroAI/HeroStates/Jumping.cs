@@ -15,11 +15,12 @@ public class Jumping : BaseState
     {
         base.Enter();
         sm.spriteRenderer.color = Color.green;
-        sm.rigidbody.AddForce(Vector2.up * sm.jumpForce, ForceMode2D.Impulse);
-        //Vector2 vel = sm.rigidbody.velocity;
-        // vel.y += sm.jumpForce;
-        //vel.x += 1f;
-        //sm.rigidbody.velocity = vel;
+
+        Vector2 vel = sm.rigidbody.velocity;
+        vel.y += sm.jumpForce;
+        vel.x += 1f;
+        sm.rigidbody.velocity = vel;
+
         sm.grounded = false;
         sm.jump = false;
     }
