@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 774496838755719516}
   - component: {fileID: 6960360850025462579}
   m_Layer: 0
-  m_Name: Pickup
+  m_Name: EmptyBottlePickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5442856494475027799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.472, y: -1.097, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 0.3116, y: 0.3116, z: 0.3116}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -2032181407, guid: 3d3df3f1ff512f5449c5de2e305091c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,7 +120,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.50000006
+  m_Radius: 0.8
 --- !u!114 &6960360850025462579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,4 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d446ab703d93184998c1a99f8af62b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectInstance: {fileID: 0}
+  _effectInstances: []
