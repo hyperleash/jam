@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5253321097638139722
 SpriteRenderer:
@@ -176,6 +176,10 @@ MonoBehaviour:
   hp: 0
   speed: 4
   jumpForce: 5
+  groundDistanceCheck: 0.1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
   rigidbody: {fileID: 8055376033714810334}
   spriteRenderer: {fileID: 5253321097638139722}
   attackingState: {fileID: 0}
