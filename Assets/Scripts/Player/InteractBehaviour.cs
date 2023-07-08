@@ -8,12 +8,21 @@ using Unity.VisualScripting;
 
 public class InteractBehaviour : MonoBehaviour
 {
+    public bool IsPlaceableZoneRequired
+    {
+        get => _isPlaceableZoneRequired;
+        set => _isPlaceableZoneRequired = value;
+    }
+
     [SerializeField] private LayerMask _interactableMask;
     [SerializeField] private LayerMask _placeableMask;
+    [SerializeField] private LayerMask _placeableZoneMask;
     [SerializeField] private float _tileSizeSnapping = 1.0f;
+    [SerializeField] private bool _isPlaceableZoneRequired = true;
 
     private Collider2D _dragging;
     private Collider2D _ghostCollider;
+    private SpriteRenderer _ghostSprite;
     private Camera _camera;
 
     private Collider2D[] _colliding = new Collider2D[32];
@@ -25,7 +34,12 @@ public class InteractBehaviour : MonoBehaviour
             return;
 
         if (context.performed)
-            PlaceGameObject(ref _ghostCollider);
+        {
+            if (PlaceGameObject(ref _ghostCollider))
+                _ghostSprite.enabled = true; 
+            else
+                _ghostSprite.enabled = false; // Hide if there is no valid placeable location
+        }
     }
 
     public void DragAndDrop(InputAction.CallbackContext context)
@@ -56,7 +70,9 @@ public class InteractBehaviour : MonoBehaviour
 
                         var ghostSprite = ghostObject.AddComponent<SpriteRenderer>();
                         ghostSprite.sprite = outSpriteRenderer.sprite;
-                        ghostSprite.color = outSpriteRenderer.color.WithAlpha(outSpriteRenderer.color.a / 2);
+                        Color color = outSpriteRenderer.color;
+                        color.a /= 2;
+                        ghostSprite.color = color;
                         ghostSprite.flipX = outSpriteRenderer.flipX;
                         ghostSprite.flipY = outSpriteRenderer.flipY;
                         ghostSprite.drawMode = outSpriteRenderer.drawMode;
@@ -66,7 +82,8 @@ public class InteractBehaviour : MonoBehaviour
                         ghostSprite.sortingLayerID = outSpriteRenderer.sortingLayerID;
                         ghostSprite.sortingOrder = outSpriteRenderer.sortingOrder;
                         ghostSprite.renderingLayerMask = outSpriteRenderer.renderingLayerMask;
-                        
+                        _ghostSprite = ghostSprite;
+
                         var ghostCollider = ghostObject.AddComponent<BoxCollider2D>();
 
                         if (_dragging is BoxCollider2D boxCollider)
@@ -91,6 +108,7 @@ public class InteractBehaviour : MonoBehaviour
             {
                 Destroy(_ghostCollider.gameObject);
                 _ghostCollider = null;
+                _ghostSprite = null;
             }
 
             if (_dragging is not null)
@@ -106,10 +124,10 @@ public class InteractBehaviour : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private void PlaceGameObject(ref Collider2D collider)
+    private bool PlaceGameObject(ref Collider2D collider)
     {
         if (collider is null)
-            return;
+            return false;
 
         Vector2 cursorPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).xy_();
         Vector2 currentPoint = new Vector2(
@@ -124,7 +142,6 @@ public class InteractBehaviour : MonoBehaviour
                 break;
 
             currentPoint.y = _colliding.First().bounds.max.y + collider.bounds.size.y / 2;
-            collider.transform.position = currentPoint;
         }
 
         int hitCount = Physics2D.BoxCastNonAlloc(
@@ -132,9 +149,35 @@ public class InteractBehaviour : MonoBehaviour
             Vector2.down, _hits, float.MaxValue, _placeableMask);
 
         if (hitCount <= 0)
-            return;
+            return false;
 
         currentPoint.y = _hits.First().point.y + collider.bounds.size.y / 2;
+
+        if (_isPlaceableZoneRequired)
+        {
+            Bounds bounds = collider.bounds;
+            Vector2 topRight = new Vector2(currentPoint.x + bounds.extents.x, currentPoint.y + bounds.extents.y);
+            Vector2 topLeft = new Vector2(currentPoint.x - bounds.extents.x, currentPoint.y + bounds.extents.y);
+            Vector2 bottomRight = new Vector2(currentPoint.x + bounds.extents.x, currentPoint.y - bounds.extents.y);
+            Vector2 bottomLeft = new Vector2(currentPoint.x - bounds.extents.x, currentPoint.y - bounds.extents.y);
+
+            bool OverlapPoint(Vector2 point)
+            {
+                int colliderCount = Physics2D.OverlapPointNonAlloc(point, _colliding, _placeableZoneMask);
+
+                if (colliderCount <= 0)
+                    return false;
+
+                return true;
+            }
+
+            // All corners need to be inside of a placeable zone.
+            if (!(OverlapPoint(topRight) && OverlapPoint(topLeft) && OverlapPoint(bottomRight) && OverlapPoint(bottomLeft)))
+                return false;
+        }
+
         collider.transform.position = currentPoint;
+
+        return true;
     }
 }

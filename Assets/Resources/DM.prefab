@@ -113,4 +113,7 @@ MonoBehaviour:
   _placeableMask:
     serializedVersion: 2
     m_Bits: 128
+  _placeableZoneMask:
+    serializedVersion: 2
+    m_Bits: 256
   _tileSizeSnapping: 1
