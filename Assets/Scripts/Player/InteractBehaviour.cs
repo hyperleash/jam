@@ -10,6 +10,7 @@ public class InteractBehaviour : MonoBehaviour
 {
     [SerializeField] private LayerMask _interactableMask;
     [SerializeField] private LayerMask _placeableMask;
+    [SerializeField] private float _tileSizeSnapping = 1.0f;
 
     private Collider2D _dragging;
     private Collider2D _ghostCollider;
@@ -86,13 +87,17 @@ public class InteractBehaviour : MonoBehaviour
         }
         else if (context.canceled)
         {
-            Destroy(_ghostCollider.gameObject);
-            PlaceGameObject(ref _dragging);
+            if (_ghostCollider is not null)
+            {
+                Destroy(_ghostCollider.gameObject);
+                _ghostCollider = null;
+            }
 
-            _dragging.isTrigger = false;
-
-            _ghostCollider = null;
-            _dragging = null;
+            if (_dragging is not null)
+            {
+                PlaceGameObject(ref _dragging);
+                _dragging = null;
+            }
         }
     }
 
@@ -106,7 +111,9 @@ public class InteractBehaviour : MonoBehaviour
         if (collider is null)
             return;
 
-        Vector2 currentPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).xy_();
+        Vector2 cursorPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).xy_();
+        Vector2 currentPoint = new Vector2(
+            Mathf.Round(cursorPoint.x / _tileSizeSnapping) * _tileSizeSnapping, cursorPoint.y);
 
         while (true)
         {
