@@ -31,4 +31,18 @@ public class HeroSM : StateMachine
     {
         return runningState;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "jump")
+        {
+            jump = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        grounded = true;
+
+    }
 }

@@ -7,11 +7,14 @@ public class StateMachine : MonoBehaviour
     BaseState currentState;
     public bool grounded;
     public bool jump;
+
+    public int hp;
     void Start()
     {
         currentState = GetInitialState();
         grounded = true;
         jump = false;
+        hp = 100;
         if (currentState != null)
             currentState.Enter();
     }
@@ -49,16 +52,5 @@ public class StateMachine : MonoBehaviour
         GUILayout.EndArea();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "jump")
-        {
-            jump = true;
-        }
-    }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        grounded = true;
-    }
 }
