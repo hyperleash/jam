@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class InteractBehaviour : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class InteractBehaviour : MonoBehaviour
     [SerializeField] private LayerMask _placeableMask;
 
     private Collider2D _dragging;
-    private GameObject _ghostObject;
+    private Collider2D _ghostCollider;
     private Camera _camera;
 
     private Collider2D[] _colliding = new Collider2D[32];
@@ -23,7 +24,7 @@ public class InteractBehaviour : MonoBehaviour
             return;
 
         if (context.performed)
-            PlaceGameObject(ref _dragging);
+            PlaceGameObject(ref _ghostCollider);
     }
 
     public void DragAndDrop(InputAction.CallbackContext context)
@@ -44,14 +45,39 @@ public class InteractBehaviour : MonoBehaviour
                     _dragging = collider;
                     _dragging.isTrigger = true;
 
-                    if (_dragging.TryGetComponent<SpriteRenderer>(out var outSpriteRenderer) && _dragging.TryGetComponent<Collider2D>(out var outCollider2D))
+                    if (_dragging.TryGetComponent<SpriteRenderer>(out var outSpriteRenderer))
                     {
-                        _ghostObject = new GameObject("GhostObject");
-                        _ghostObject.layer = _dragging.gameObject.layer;
-                        _ghostObject.transform.position = _dragging.transform.position;
-                        _ghostObject.transform.rotation = _dragging.transform.rotation;
-                        _ghostObject.transform.localScale = _dragging.transform.localScale;
-                        CopySpriteRenderer(_ghostObject.AddComponent<SpriteRenderer>(), outSpriteRenderer);
+                        GameObject ghostObject = new GameObject("GhostObject");
+                        ghostObject.layer = _dragging.gameObject.layer;
+                        ghostObject.transform.position = _dragging.transform.position;
+                        ghostObject.transform.rotation = _dragging.transform.rotation;
+                        ghostObject.transform.localScale = _dragging.transform.localScale;
+
+                        var ghostSprite = ghostObject.AddComponent<SpriteRenderer>();
+                        ghostSprite.sprite = outSpriteRenderer.sprite;
+                        ghostSprite.color = outSpriteRenderer.color.WithAlpha(outSpriteRenderer.color.a / 2);
+                        ghostSprite.flipX = outSpriteRenderer.flipX;
+                        ghostSprite.flipY = outSpriteRenderer.flipY;
+                        ghostSprite.drawMode = outSpriteRenderer.drawMode;
+                        ghostSprite.maskInteraction = outSpriteRenderer.maskInteraction;
+                        ghostSprite.spriteSortPoint = outSpriteRenderer.spriteSortPoint;
+                        ghostSprite.material = outSpriteRenderer.material;
+                        ghostSprite.sortingLayerID = outSpriteRenderer.sortingLayerID;
+                        ghostSprite.sortingOrder = outSpriteRenderer.sortingOrder;
+                        ghostSprite.renderingLayerMask = outSpriteRenderer.renderingLayerMask;
+                        
+                        var ghostCollider = ghostObject.AddComponent<BoxCollider2D>();
+
+                        if (_dragging is BoxCollider2D boxCollider)
+                            ghostCollider.size = boxCollider.size;
+                        else if (_dragging is CapsuleCollider2D capsuleCollider)
+                            ghostCollider.size = capsuleCollider.size;
+                        else
+                            ghostCollider.size = _dragging.bounds.size;
+    
+                        ghostCollider.offset = _dragging.offset;
+                        ghostCollider.isTrigger = true;
+                        _ghostCollider = ghostCollider;
                     }
 
                     break;
@@ -60,12 +86,12 @@ public class InteractBehaviour : MonoBehaviour
         }
         else if (context.canceled)
         {
-            Destroy(_ghostObject);
+            Destroy(_ghostCollider.gameObject);
             PlaceGameObject(ref _dragging);
 
             _dragging.isTrigger = false;
 
-            _ghostObject = null;
+            _ghostCollider = null;
             _dragging = null;
         }
     }
@@ -82,7 +108,6 @@ public class InteractBehaviour : MonoBehaviour
 
         Vector2 currentPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).xy_();
 
-        Debug.Log(collider.gameObject);
         while (true)
         {
             int colliderCount = Physics2D.OverlapBoxNonAlloc(new Vector2(currentPoint.x, currentPoint.y + 0.05f), collider.bounds.size,
@@ -104,20 +129,5 @@ public class InteractBehaviour : MonoBehaviour
 
         currentPoint.y = _hits.First().point.y + collider.bounds.size.y / 2;
         collider.transform.position = currentPoint;
-    }
-
-    private void CopySpriteRenderer(SpriteRenderer copy, SpriteRenderer original)
-    {
-        copy.sprite = original.sprite;
-        copy.color = original.color;
-        copy.flipX = original.flipX;
-        copy.flipY = original.flipY;
-        copy.drawMode = original.drawMode;
-        copy.maskInteraction = original.maskInteraction;
-        copy.spriteSortPoint = original.spriteSortPoint;
-        copy.material = original.material;
-        copy.sortingLayerID = original.sortingLayerID;
-        copy.sortingOrder = original.sortingOrder;
-        copy.renderingLayerMask = original.renderingLayerMask;
     }
 }
