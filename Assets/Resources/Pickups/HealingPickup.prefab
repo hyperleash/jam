@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: _effectInstance
       value: 
       objectReference: {fileID: 11400000, guid: f916e516fb48bf14ab75dc4f6a7a426a, type: 2}
+    - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: _effectInstances.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: _effectInstances.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f916e516fb48bf14ab75dc4f6a7a426a, type: 2}
     - target: {fileID: 8443201903662466831, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: m_Color.b
       value: 0.056943893
