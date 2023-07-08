@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6155577905947093015}
   m_Layer: 0
   m_Name: Witch
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 5933649240968900141}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5159446298803257951
 SpriteRenderer:
@@ -166,6 +166,7 @@ MonoBehaviour:
   grounded: 0
   jump: 0
   hp: 0
+  spellRange: 10
   speed: 4
   jumpForce: 9
   groundDistanceCheck: 0.1
@@ -176,8 +177,10 @@ MonoBehaviour:
   rigidbody: {fileID: 1574616914970802033}
   spriteRenderer: {fileID: 5159446298803257951}
   animator: {fileID: 6155577905947093015}
-  attackingState: {fileID: 0}
   attackHitbox: {fileID: 0}
+  spell: {fileID: 5517892303186680635, guid: f4f168dc770c54fadb96cc1dc54490dc, type: 3}
+  spellTarget: {x: 0, y: 0}
+  castFinished: 0
 --- !u!95 &6155577905947093015
 Animator:
   serializedVersion: 5

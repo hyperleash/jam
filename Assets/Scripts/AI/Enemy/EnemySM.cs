@@ -61,4 +61,8 @@ public class EnemySM : StateMachine
         grounded = true;
     }
 
+    public void die(){
+        Destroy(gameObject);
+    }
+
 }
