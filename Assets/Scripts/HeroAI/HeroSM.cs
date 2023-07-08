@@ -8,11 +8,12 @@ public class HeroSM : StateMachine
     [SerializeField]
     public float jumpForce = 14f;
     public float groundDistanceCheck = 0.1f;
+    public float attackDamage = 10f;
     public LayerMask groundMask;
     public Rigidbody2D rigidbody;
 
     public SpriteRenderer spriteRenderer;
-
+    public Animator animator;
     [HideInInspector]
     public Attacking attackingState;
     [HideInInspector]
@@ -22,6 +23,7 @@ public class HeroSM : StateMachine
 
     private Collider2D collider;
 
+    public Collider2D attackHitbox;
 
     private void Awake()
     {
@@ -30,7 +32,8 @@ public class HeroSM : StateMachine
         jumpingState = new Jumping(this);
 
         collider = GetComponent<Collider2D>();
-
+        attackHitbox = this.transform.GetChild(0).gameObject.GetComponent<Collider2D>();
+        attackHitbox.enabled = false;
     }
 
     protected override BaseState GetInitialState()
@@ -54,5 +57,13 @@ public class HeroSM : StateMachine
         {
             grounded = true;
         }
+    }
+
+    protected void startAttack(){
+        attackHitbox.enabled = true;
+    }
+
+    protected void endAttack(){
+        attackHitbox.enabled = false;
     }
 }
