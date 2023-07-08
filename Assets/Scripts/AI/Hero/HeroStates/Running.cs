@@ -23,6 +23,17 @@ public class Running : BaseState
         {
             stateMachine.ChangeState(sm.jumpingState);
         }
+
+        RaycastHit2D spellHit = Physics2D.Raycast((Vector2)sm.transform.position + Vector2.right, Vector2.right , sm.spellRange);
+        Debug.DrawRay((Vector2)sm.transform.position + Vector2.right, Vector2.right * sm.spellRange, Color.green, 0);
+        if(spellHit.collider != null){
+            Debug.Log(spellHit.collider.gameObject.tag);
+            Debug.DrawRay((Vector2)sm.transform.position + Vector2.right, Vector2.right * sm.spellRange, Color.blue, 0);
+            if(spellHit.collider.gameObject.tag == "enemy"){
+                Debug.Log("Hit enemy");
+                Debug.DrawRay((Vector2)sm.transform.position + Vector2.right, Vector2.right * sm.spellRange, Color.red, 0);
+            }
+        }
         
     }
 

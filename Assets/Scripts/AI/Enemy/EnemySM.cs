@@ -59,8 +59,6 @@ public class EnemySM : StateMachine
     private void OnCollisionEnter2D(Collision2D other)
     {
         grounded = true;
-
-
     }
 
 }

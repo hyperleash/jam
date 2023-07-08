@@ -9,6 +9,7 @@ public class HeroSM : StateMachine
     public float jumpForce = 14f;
     public float groundDistanceCheck = 0.1f;
     public float attackDamage = 10f;
+    
     public LayerMask groundMask;
     public Rigidbody2D rigidbody;
 
@@ -24,6 +25,8 @@ public class HeroSM : StateMachine
     private Collider2D collider;
 
     public Collider2D attackHitbox;
+
+    public GameObject spell; 
 
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class HeroSM : StateMachine
         {
             jump = true;
         }
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -65,5 +69,9 @@ public class HeroSM : StateMachine
 
     protected void endAttack(){
         attackHitbox.enabled = false;
+    }
+
+    protected void spawnSpell(Vector2 position){
+        Instantiate(spell, position, Quaternion.identity);
     }
 }
