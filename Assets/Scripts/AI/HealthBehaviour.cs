@@ -60,9 +60,9 @@ public class HealthBehaviour : MonoBehaviour
     public event Action OnDeathCallback = delegate { };
 
     [SerializeField, Min(0)]
-    private int _health = 10;
+    private int _health = 100;
     [SerializeField, Min(0)]
-    private int _maxHealth = 10;
+    private int _maxHealth = 100;
 
     [SerializeField]
     private UnityEvent<int> _onHealthChanged;
