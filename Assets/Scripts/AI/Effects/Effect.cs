@@ -7,7 +7,12 @@ using System.Threading;
 
 public class Effect : ScriptableObject
 {
-    public float Duration => _duration;
+    public float Duration
+    {
+        get => _duration;
+        set => _duration = value;
+    }
+
     public EffectBehaviour EffectBehaviour => _behaviour;
 
     [SerializeField, Min(0)]
@@ -16,11 +21,13 @@ public class Effect : ScriptableObject
     private EffectBehaviour _behaviour;
     private CancellationTokenSource _destroyTokenSource = new CancellationTokenSource();
 
-    public void Initialize(EffectBehaviour behaviour)
+    public Effect Initialize(EffectBehaviour behaviour)
     {
         _behaviour = behaviour;
         OnActivate(behaviour);
         Update().AttachExternalCancellation(_destroyTokenSource.Token);
+
+        return this;
     }
 
     protected virtual void OnActivate(EffectBehaviour behaviour) { }
@@ -33,7 +40,7 @@ public class Effect : ScriptableObject
         Destroy(this);
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
         _destroyTokenSource.Cancel();
         _destroyTokenSource.Dispose();

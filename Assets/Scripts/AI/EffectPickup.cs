@@ -6,6 +6,8 @@ using UnityEngine;
 public class EffectPickup : MonoBehaviour
 {
     [SerializeField]
+    private float _durationScaling = 1f;
+    [SerializeField]
     private Effect[] _effectInstances;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,7 +16,8 @@ public class EffectPickup : MonoBehaviour
         {
             foreach (Effect effectInstance in _effectInstances)
             {
-                Instantiate(effectInstance).Initialize(outEffectBehaviour);
+                var effect = Instantiate(effectInstance).Initialize(outEffectBehaviour);
+                effect.Duration *= _durationScaling;
             }
 
             Destroy(gameObject);
