@@ -9,11 +9,14 @@ public class Jumping : BaseState
     public Jumping(HeroSM stateMachine) : base("Jumping", stateMachine)
     {
         sm = (HeroSM)this.stateMachine;
+        
     }
 
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Entered Jump");
+        sm.animator.SetBool("running", false);
         sm.spriteRenderer.color = Color.green;
 
         Vector2 vel = sm.rigidbody.velocity;
