@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,7 +23,7 @@ public class HealthBehaviour : MonoBehaviour
                 if (_invisibilityFrameCount > 0) // In invisibility frame and cannot lose life.
                     return;
 
-                InvisibilityFrame(_invisibilityDuration).Forget(); // Add invisibility if losing life.
+                InvisibilityFrame(_invisibilityDuration, default).Forget(); // Add invisibility if losing life.
             }
 
             OnHealthChangedCallback((value, value - _health));
@@ -84,7 +85,13 @@ public class HealthBehaviour : MonoBehaviour
 
     private int _invisibilityFrameCount;
 
-    public void AddInvisibilityFrames(float duration) => InvisibilityFrame(duration).Forget();
+    public void AddInvisibilityFrames(float duration) => InvisibilityFrame(duration, default).Forget();
+    public CancellationTokenSource AddInvisibilityFramesWithCancellation(float duration)
+    {
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        InvisibilityFrame(duration, cancellationTokenSource.Token).Forget();
+        return cancellationTokenSource;
+    }
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -94,10 +101,10 @@ public class HealthBehaviour : MonoBehaviour
     }
 #endif
 
-    private async UniTask InvisibilityFrame(float duration)
+    private async UniTask InvisibilityFrame(float duration, CancellationToken cancellationToken)
     {
         _invisibilityFrameCount++;
-        await UniTask.WaitForSeconds(duration);
+        await UniTask.WaitForSeconds(duration, cancellationToken: cancellationToken);
         _invisibilityFrameCount--;
     }
 }

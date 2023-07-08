@@ -57,6 +57,14 @@ PrefabInstance:
       value: TreasurePickup
       objectReference: {fileID: 0}
     - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: _id
+      value: treasure
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: _message
+      value: treasure
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: _effectInstance
       value: 
       objectReference: {fileID: 11400000, guid: cb6503c770f37e345ae5f22b56d08ae6, type: 2}
@@ -70,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: _effectInstances.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: _effectInstances.Array.data[0]
@@ -80,6 +88,14 @@ PrefabInstance:
       propertyPath: _effectInstances.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 72d2e07b9ed70244a9ea74dec8a8d40a, type: 2}
+    - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: _effectInstances.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: e96820a4da3aedf4896120352ae19f03, type: 2}
+    - target: {fileID: 6960360850025462579, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: _effectInstances.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: ab586dcf3be9d8046b720928eb5ab312, type: 2}
     - target: {fileID: 8443201903662466831, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: m_Sprite
       value: 

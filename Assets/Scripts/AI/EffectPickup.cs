@@ -6,7 +6,9 @@ using UnityEngine;
 public class EffectPickup : MonoBehaviour
 {
     [SerializeField]
-    private float _durationScaling = 1f;
+    private string _id;
+    [SerializeField]
+    private float _durationScaling = 1f; 
     [SerializeField]
     private Effect[] _effectInstances;
 
@@ -16,8 +18,10 @@ public class EffectPickup : MonoBehaviour
         {
             foreach (Effect effectInstance in _effectInstances)
             {
-                var effect = Instantiate(effectInstance).Initialize(outEffectBehaviour);
+                Effect effect = Instantiate(effectInstance).Initialize(outEffectBehaviour);
                 effect.Duration *= _durationScaling;
+                effect.Id = _id;
+                outEffectBehaviour.AddEffect(effect);
             }
 
             Destroy(gameObject);
