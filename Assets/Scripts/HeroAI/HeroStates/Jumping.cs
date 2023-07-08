@@ -28,7 +28,6 @@ public class Jumping : BaseState
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        Debug.Log(sm.grounded);
         if (sm.grounded)
             stateMachine.ChangeState(sm.runningState);
     }
