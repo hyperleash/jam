@@ -36,6 +36,7 @@ public class Patrol : BaseState
         {
             direction = Vector2.left;
         }
+        
         sm.rigidbody.MovePosition(sm.rigidbody.position + Time.deltaTime * direction);
 
     }
