@@ -6,6 +6,8 @@ public class Running : BaseState
 {
     protected HeroSM sm;
 
+    
+
     public Running(HeroSM stateMachine) : base("Running", stateMachine) { }
 
     public override void Enter()
@@ -14,6 +16,7 @@ public class Running : BaseState
         sm = (HeroSM)this.stateMachine;
         sm.spriteRenderer.color = Color.red;
         sm.animator.SetBool("running", true);
+        sm.animator.SetBool("attacking",false);
     }
 
     public override void UpdateLogic()
@@ -26,12 +29,16 @@ public class Running : BaseState
 
         RaycastHit2D spellHit = Physics2D.Raycast((Vector2)sm.transform.position + Vector2.right, Vector2.right , sm.spellRange);
         Debug.DrawRay((Vector2)sm.transform.position + Vector2.right, Vector2.right * sm.spellRange, Color.green, 0);
+
         if(spellHit.collider != null){
-            Debug.Log(spellHit.collider.gameObject.tag);
+          
             Debug.DrawRay((Vector2)sm.transform.position + Vector2.right, Vector2.right * sm.spellRange, Color.blue, 0);
             if(spellHit.collider.gameObject.tag == "enemy"){
-                Debug.Log("Hit enemy");
+                
                 Debug.DrawRay((Vector2)sm.transform.position + Vector2.right, Vector2.right * sm.spellRange, Color.red, 0);
+
+                sm.spellTarget = spellHit.collider.gameObject.transform.position;
+                stateMachine.ChangeState(sm.attackingState);
             }
         }
         

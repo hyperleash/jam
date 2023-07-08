@@ -17,6 +17,7 @@ public class Jumping : BaseState
         base.Enter();
         Debug.Log("Entered Jump");
         sm.animator.SetBool("running", false);
+        sm.animator.SetBool("attacking",false);
         sm.spriteRenderer.color = Color.green;
 
         Vector2 vel = sm.rigidbody.velocity;

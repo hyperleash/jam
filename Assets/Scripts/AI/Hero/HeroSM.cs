@@ -8,7 +8,7 @@ public class HeroSM : StateMachine
     [SerializeField]
     public float jumpForce = 14f;
     public float groundDistanceCheck = 0.1f;
-    public float attackDamage = 10f;
+    public int attackDamage = 10;
     
     public LayerMask groundMask;
     public Rigidbody2D rigidbody;
@@ -28,9 +28,14 @@ public class HeroSM : StateMachine
 
     public GameObject spell; 
 
+    public Vector2 spellTarget;
+
+    public bool castFinished;
+    
+
     private void Awake()
     {
-        //attackingState = new Attacking(this);
+        attackingState = new Attacking(this);
         runningState = new Running(this);
         jumpingState = new Jumping(this);
 
@@ -51,6 +56,10 @@ public class HeroSM : StateMachine
             jump = true;
         }
 
+        if (other.gameObject.tag == "enemy"){
+            other.gameObject.GetComponent<HealthBehaviour>().Health = other.gameObject.GetComponent<HealthBehaviour>().Health - attackDamage;
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -65,13 +74,22 @@ public class HeroSM : StateMachine
 
     protected void startAttack(){
         attackHitbox.enabled = true;
+       
+        castFinished = false;
     }
 
     protected void endAttack(){
         attackHitbox.enabled = false;
     }
 
-    protected void spawnSpell(Vector2 position){
-        Instantiate(spell, position, Quaternion.identity);
+    protected void spawnSpell(){
+        Instantiate(spell, spellTarget, Quaternion.identity);
+        castFinished = false;
     }
+
+    protected void finishCast(){
+        castFinished = true;
+    }
+
+    
 }

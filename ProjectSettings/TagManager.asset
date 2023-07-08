@@ -8,6 +8,7 @@ TagManager:
   - jump
   - enemy
   - hitbox
+  - spell
   layers:
   - Default
   - TransparentFX
