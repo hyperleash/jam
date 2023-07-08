@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MovableTestScene.unity
     guid: ea767ec49a6304049b754b00be11fbea
+  - enabled: 1
+    path: Assets/Scenes/HeroEffectTestScene.unity
+    guid: 4bb3abbee8d154349a5dd011bbccad6e
   m_configObjects: {}

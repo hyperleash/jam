@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,14 @@ public class HealthBehaviour : MonoBehaviour
 
             if (_health == value)  // Health is unaffected.
                 return;
+
+            if (value < _health)
+            {
+                if (_invisibilityFrameCount > 0) // In invisibility frame and cannot lose life.
+                    return;
+
+                InvisibilityFrame(_invisibilityDuration).Forget(); // Add invisibility if losing life.
+            }
 
             OnHealthChangedCallback((value, value - _health));
             _onHealthChanged.Invoke(value);
@@ -63,6 +72,8 @@ public class HealthBehaviour : MonoBehaviour
     private int _health = 100;
     [SerializeField, Min(0)]
     private int _maxHealth = 100;
+    [SerializeField, Min(0)]
+    private float _invisibilityDuration = 1;
 
     [SerializeField]
     private UnityEvent<int> _onHealthChanged;
@@ -71,6 +82,10 @@ public class HealthBehaviour : MonoBehaviour
     [SerializeField]
     private UnityEvent _onDeath;
 
+    private int _invisibilityFrameCount;
+
+    public void AddInvisibilityFrames(float duration) => InvisibilityFrame(duration).Forget();
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -78,4 +93,11 @@ public class HealthBehaviour : MonoBehaviour
             _health = _maxHealth;
     }
 #endif
+
+    private async UniTask InvisibilityFrame(float duration)
+    {
+        _invisibilityFrameCount++;
+        await UniTask.WaitForSeconds(duration);
+        _invisibilityFrameCount--;
+    }
 }

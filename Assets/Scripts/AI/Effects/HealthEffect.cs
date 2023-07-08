@@ -6,15 +6,13 @@ using UnityEngine;
 public class HealthEffect : Effect
 {
     [SerializeField]
-    private float _healthChange = 20;
-
-    private float _previousGravity;
+    private int _healthChange = 20;
 
     protected override void OnActivate(EffectBehaviour behaviour)
     {
         if (behaviour.TryGetComponent(out HealthBehaviour outHealthBehaviour))
         {
-            outHealthBehaviour.Health += 20;
+            outHealthBehaviour.Health += _healthChange;
         }
     }
 }
