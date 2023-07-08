@@ -19,6 +19,9 @@ public class CancelOnHitEffect : Effect
                     if (behaviour.TryGetComponent(out EffectBehaviour outEffectBehaviour))
                     {
                         outEffectBehaviour.RemoveEffectWithId(_idToCancel);
+
+                        if (this != null)
+                            Destroy(this);
                     }
                 }
             };
