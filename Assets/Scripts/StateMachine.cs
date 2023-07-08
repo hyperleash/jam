@@ -7,8 +7,9 @@ public class StateMachine : MonoBehaviour
     BaseState currentState;
     public bool grounded;
     public bool jump;
-
     public int hp;
+    public float spellRange;
+    
     void Start()
     {
         currentState = GetInitialState();
