@@ -176,6 +176,20 @@ public class InteractBehaviour : MonoBehaviour
                 return false;
         }
 
+        {
+            int colliderCount = Physics2D.OverlapBoxNonAlloc(new Vector2(currentPoint.x, currentPoint.y), collider.bounds.size,
+                   collider.transform.rotation.z, _colliding, _interactableMask);
+
+            if (colliderCount > 0)
+            {
+                for (int i = 0; i < colliderCount; i++)
+                {
+                    if (_colliding[i] != _dragging && _colliding[i] != _ghostCollider)  // Pervent placing on each other.
+                        return false;
+                }
+            }
+        }
+
         collider.transform.position = currentPoint;
 
         return true;
