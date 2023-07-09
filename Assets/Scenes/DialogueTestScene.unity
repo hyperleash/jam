@@ -1542,6 +1542,26 @@ PrefabInstance:
       value: DialogueManager
       objectReference: {fileID: 0}
     - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnExitDialogueClip.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnEnterDialogueClip.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnProcessDialogueClip.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnExitDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnEnterDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
       propertyPath: OnExitDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 600069175}
@@ -1550,9 +1570,61 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 600069175}
     - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnProcessDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnExitDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
       propertyPath: OnProcessDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 600069175}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnEnterDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnExitDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnExitClip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnEnterDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEnterClip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnProcessDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnProcessDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnProcessClip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnExitDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnEnterDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnProcessDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnExitDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnEnterDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467271062379383646, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
+      propertyPath: OnProcessDialogueClip.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5133291388461353166, guid: f9b82346a8656a340bdf656d388ceef6, type: 3}
       propertyPath: m_PlayableAsset
       value: 
