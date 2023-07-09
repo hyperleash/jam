@@ -3,28 +3,60 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _leftTextGUI;
     [SerializeField] private TextMeshProUGUI _rightTextGUI;
+    [SerializeField] private TextMeshProUGUI _leftActorGUI;
+    [SerializeField] private TextMeshProUGUI _rightActorGUI;
+    [SerializeField] private PlayableDirector _playableDirector;
 
     public void OnProcessClip(DialogueSystemBinder.Callback callback)
     {
         if (callback.Asset is DialogueAsset asset)
         {
-            _leftTextGUI.text = asset.Text;
-            _leftTextGUI.maxVisibleCharacters = Mathf.CeilToInt(_leftTextGUI.textInfo.characterCount * callback.Percentage);
+            if (callback.Index == 0)
+            {
+                _leftActorGUI.text = asset.Actor;
+                _leftTextGUI.text = asset.Text;
+                _leftTextGUI.maxVisibleCharacters = Mathf.CeilToInt(_leftTextGUI.textInfo.characterCount * callback.Percentage);
+            }
+            else if (callback.Index == 1)
+            {
+                _rightActorGUI.text = asset.Actor;
+                _rightTextGUI.text = asset.Text;
+                _rightTextGUI.maxVisibleCharacters = Mathf.CeilToInt(_rightTextGUI.textInfo.characterCount * callback.Percentage);
+            }
         }
     }
 
     public void OnEnterClip(DialogueSystemBinder.Callback callback)
     {
-        _leftTextGUI.text = null;
+        if (callback.Index == 0)    // Left.
+        {
+            _leftTextGUI.text = null;
+            _leftActorGUI.text = null;
+        }
+        else if (callback.Index == 1)   // Right.
+        {
+            _rightTextGUI.text = null;
+            _rightActorGUI.text = null;
+        }
     }
 
     public void OnExitClip(DialogueSystemBinder.Callback callback)
     {
-        _leftTextGUI.text = null;
+        if (callback.Index == 0)    // Left.
+        {
+            _leftTextGUI.text = null;
+            _leftActorGUI.text = null;
+        }
+        else if (callback.Index == 1)   // Right.
+        {
+            _rightTextGUI.text = null;
+            _rightActorGUI.text = null;
+        }
     }
 }
