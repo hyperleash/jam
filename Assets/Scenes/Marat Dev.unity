@@ -2953,6 +2953,9 @@ MonoBehaviour:
   _health: 100
   _maxHealth: 100
   _invisibilityDuration: 1
+  _onHealthChanging:
+    m_PersistentCalls:
+      m_Calls: []
   _onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2974,6 +2977,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &739027734 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4006466673045172640, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+  m_PrefabInstance: {fileID: 1458597827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &739027735 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7481452419731042327, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+  m_PrefabInstance: {fileID: 1458597827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &739027737 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2600090251514793707, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+  m_PrefabInstance: {fileID: 1458597827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &780295346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3139,6 +3157,26 @@ PrefabInstance:
     - target: {fileID: 7107072365903748242, guid: 6958179485e734007aa4f935ffffac81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698796182792017940, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 739027734}
+    - target: {fileID: 8698796182792017940, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698796182792017940, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+      propertyPath: rigidbody
+      value: 
+      objectReference: {fileID: 739027735}
+    - target: {fileID: 8698796182792017940, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 739027737}
+    - target: {fileID: 8698796182792017940, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
