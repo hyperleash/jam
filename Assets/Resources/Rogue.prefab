@@ -14,9 +14,7 @@ GameObject:
   - component: {fileID: 7481452419731042327}
   - component: {fileID: 8698796182792017940}
   - component: {fileID: 4006466673045172640}
-
-  - component: {fileID: 43229017845209695}
-
+  - component: {fileID: 6451557708541974035}
   m_Layer: 0
   m_Name: Rogue
   m_TagString: Player
@@ -38,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 3634553506144673600}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2600090251514793707
 SpriteRenderer:
@@ -169,10 +167,8 @@ MonoBehaviour:
   grounded: 0
   jump: 0
   hp: 0
-
-  spellRange: 1
-
-  speed: 5
+  spellRange: 0
+  speed: 4
   jumpForce: 7
   groundDistanceCheck: 0.1
   attackDamage: 10
@@ -207,9 +203,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-
---- !u!114 &43229017845209695
-
+--- !u!114 &6451557708541974035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,6 +218,9 @@ MonoBehaviour:
   _health: 100
   _maxHealth: 100
   _invisibilityDuration: 1
+  _onHealthChanging:
+    m_PersistentCalls:
+      m_Calls: []
   _onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -232,7 +229,6 @@ MonoBehaviour:
       m_Calls: []
   _onDeath:
     m_PersistentCalls:
-
       m_Calls:
       - m_Target: {fileID: 8698796182792017940}
         m_TargetAssemblyTypeName: HeroSM, Assembly-CSharp
@@ -246,7 +242,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-
 --- !u!1 &4250726167890205226
 GameObject:
   m_ObjectHideFlags: 0
