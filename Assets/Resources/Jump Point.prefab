@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1561266087444185633}
   - component: {fileID: 3739584404261437112}
   - component: {fileID: 273546052813649578}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Jump Point
   m_TagString: jump
   m_Icon: {fileID: 0}
