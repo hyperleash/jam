@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1574616914970802033}
   - component: {fileID: 631522124647091629}
   - component: {fileID: 6155577905947093015}
+  - component: {fileID: 903773889649113976}
+  - component: {fileID: -8407672285780978403}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Player
@@ -202,6 +204,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &903773889649113976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855903727427563603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d25ed6b6b9d854a8b14c514efa1503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _maxHealth: 100
+  _invisibilityDuration: 1
+  _onHealthChanging:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _onMaxHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-8407672285780978403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855903727427563603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54ea006adffe6544a03b44ca5c4e7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeEffects: []
 --- !u!1 &8659204512264109064
 GameObject:
   m_ObjectHideFlags: 0
