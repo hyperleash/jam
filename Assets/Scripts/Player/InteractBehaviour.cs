@@ -26,6 +26,9 @@ public class InteractBehaviour : MonoBehaviour
     private EffectTrigger _effectTrigger;
     private Camera _camera;
 
+    private float _extents;
+    private float _centerOffset;
+
     private Collider2D[] _colliding = new Collider2D[32];
     private RaycastHit2D[] _hits = new RaycastHit2D[32];
 
@@ -64,6 +67,9 @@ public class InteractBehaviour : MonoBehaviour
                 {
                     _dragging = collider;
                     _effectTrigger = _dragging.GetComponent<EffectTrigger>();
+
+                    _extents = _dragging.transform.position.y - _dragging.bounds.min.y;
+                    _centerOffset = _dragging.transform.position.y - _dragging.bounds.center.y;
 
                     if (_dragging.TryGetComponent<SpriteRenderer>(out var outSpriteRenderer))
                     {
@@ -172,7 +178,7 @@ public class InteractBehaviour : MonoBehaviour
             if (colliderCount <= 0) // If there is no overlap issues.
                 break;
 
-            currentPoint.y = _colliding.First().bounds.max.y + collider.bounds.size.y / 2;
+            currentPoint.y = _colliding.First().bounds.max.y + _extents;
         }
 
         int hitCount = Physics2D.BoxCastNonAlloc(
@@ -182,7 +188,7 @@ public class InteractBehaviour : MonoBehaviour
         if (hitCount <= 0)
             return false;
 
-        currentPoint.y = _hits.First().point.y + collider.bounds.size.y / 2;
+        currentPoint.y = _hits.First().point.y + _extents;
 
         if (_isPlaceableZoneRequired)
         {
@@ -208,7 +214,7 @@ public class InteractBehaviour : MonoBehaviour
         }
 
         {
-            int colliderCount = Physics2D.OverlapBoxNonAlloc(new Vector2(currentPoint.x, currentPoint.y), collider.bounds.size,
+            int colliderCount = Physics2D.OverlapBoxNonAlloc(new Vector2(currentPoint.x, currentPoint.y - _centerOffset), collider.bounds.size,
                    collider.transform.rotation.z, _colliding, _interactableMask);
 
             if (colliderCount > 0)

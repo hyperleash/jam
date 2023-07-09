@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7564822437634420118}
   - component: {fileID: 5263889621200070502}
-  - component: {fileID: 8927399698290685171}
+  - component: {fileID: 3838304518627401818}
   m_Layer: 6
   m_Name: Boulder
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8927399698290685171
+--- !u!61 &3838304518627401818
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.65494174}
+  m_Offset: {x: 0, y: -0.63883215}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -128,5 +128,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.6901165}
+  m_Size: {x: 3, y: 1.7223357}
   m_EdgeRadius: 0
