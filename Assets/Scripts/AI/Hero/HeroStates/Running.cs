@@ -38,7 +38,11 @@ public class Running : BaseState
                 Debug.DrawRay((Vector2)sm.transform.position + Vector2.right, Vector2.right * sm.spellRange, Color.red, 0);
 
                 sm.spellTarget = spellHit.collider.gameObject.transform.position;
-                stateMachine.ChangeState(sm.attackingState);
+
+                if(!sm.paladin){
+                    stateMachine.ChangeState(sm.attackingState);
+                }
+                
             }
         }
         

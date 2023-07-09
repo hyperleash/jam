@@ -6,12 +6,15 @@ public class Spell : MonoBehaviour
 {
     public int spellDamage = 10;
 
+    public AudioSource spellSound;
+
     protected void removeSpell(){
         Destroy(gameObject);
     }
 
     protected void enableCollider(){
         gameObject.GetComponent<Collider2D>().enabled = true;
+        spellSound.Play();
     }
 
     protected void disableCollider(){
@@ -31,6 +34,8 @@ public class Spell : MonoBehaviour
             other.gameObject.GetComponent<HealthBehaviour>().Health = other.gameObject.GetComponent<HealthBehaviour>().Health - spellDamage;
         }
     }
+
+    
 
 
 }

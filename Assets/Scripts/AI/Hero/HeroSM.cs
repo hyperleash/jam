@@ -31,7 +31,11 @@ public class HeroSM : StateMachine
     public Vector2 spellTarget;
 
     public bool castFinished;
+
+    public AudioSource attackSound;
+    public AudioSource walkSound;
     
+    public bool paladin;
 
     private void Awake()
     {
@@ -93,6 +97,14 @@ public class HeroSM : StateMachine
 
     public void die(){
         Destroy(gameObject);
+    }
+
+    protected void startSound(){
+        attackSound.Play();
+    }
+
+    protected void startWalkingSound(){
+        walkSound.Play();
     }
 
     

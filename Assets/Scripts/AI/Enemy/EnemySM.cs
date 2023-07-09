@@ -30,6 +30,9 @@ public class EnemySM : StateMachine
 
     public bool castFinished;
 
+    public AudioSource attackSound;
+    
+
     private void Awake()
     {
         attackState = new Attack(this);
@@ -150,6 +153,14 @@ public class EnemySM : StateMachine
         }
 
         return false;
+    }
+
+    protected void startSound(){
+        attackSound.Play();
+    }
+
+    protected void startWalkingSound(){
+       
     }
     
 }
