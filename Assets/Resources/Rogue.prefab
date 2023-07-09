@@ -230,6 +230,7 @@ MonoBehaviour:
       m_Calls: []
   _onDeath:
     m_PersistentCalls:
+
       m_Calls:
       - m_Target: {fileID: 8698796182792017940}
         m_TargetAssemblyTypeName: HeroSM, Assembly-CSharp
@@ -243,6 +244,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+
 --- !u!114 &2971226837240527820
 MonoBehaviour:
   m_ObjectHideFlags: 0

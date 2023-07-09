@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8443201903662466831}
   - component: {fileID: 774496838755719516}
   - component: {fileID: 6960360850025462579}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EmptyBottlePickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,4 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d446ab703d93184998c1a99f8af62b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 
+  _durationScaling: 1
+  _triggeredOnce: 1
   _effectInstances: []
