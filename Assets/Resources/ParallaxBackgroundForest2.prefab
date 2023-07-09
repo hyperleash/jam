@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 60a3527989a43694a87bb5e077df09ec, type: 3}
+    - target: {fileID: 6539305786415015083, guid: 3ebf02548d42e17419380f5b593cd6d0, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
