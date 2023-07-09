@@ -38,6 +38,7 @@ public class Running : BaseState
                 Debug.DrawRay((Vector2)sm.transform.position + Vector2.right, Vector2.right * sm.spellRange, Color.red, 0);
 
                 sm.spellTarget = spellHit.collider.gameObject.transform.position;
+                sm.spellTarget.y = spellHit.collider.gameObject.transform.position.y - spellHit.collider.bounds.size.y/2;
 
                 if(!sm.paladin){
                     stateMachine.ChangeState(sm.attackingState);
@@ -50,15 +51,9 @@ public class Running : BaseState
 
     public override void UpdatePhysics()
     {
-       
-        //Vector2 runningForce = 2f * Vector2.right * ((HeroSM)stateMachine).speed;
-        //sm.rigidbody.AddForce(runningForce);
-        //sm.rigidbody.MovePosition(sm.rigidbody.position + Time.deltaTime * Vector2.right * ((HeroSM)stateMachine).speed);
         base.UpdatePhysics();
         Vector2 vel = sm.rigidbody.velocity;
         vel.x =  ((HeroSM)stateMachine).speed;
         sm.rigidbody.velocity = vel;
-        
-        //Debug.Log(runningForce);
     }
 }
