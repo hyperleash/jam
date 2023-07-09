@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EffectTrigger : MonoBehaviour
 {
+    public IEnumerable<Effect> EffectInstances => _effectInstances;
+
     [SerializeField] private string _id;
     [SerializeField] private float _durationScaling = 1f;
     [SerializeField] private bool _triggeredOnce = true;
@@ -12,7 +14,16 @@ public class EffectTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out EffectBehaviour outEffectBehaviour)) 
+        if (ApplyEffectsTo(collision.gameObject))
+        {
+            if (_triggeredOnce)
+                Destroy(gameObject);
+        }
+    }
+
+    public bool ApplyEffectsTo(GameObject toAffect)
+    {
+        if (toAffect.TryGetComponent(out EffectBehaviour outEffectBehaviour))
         {
             foreach (Effect effectInstance in _effectInstances)
             {
@@ -23,8 +34,9 @@ public class EffectTrigger : MonoBehaviour
                 effect.Initialize(outEffectBehaviour);
             }
 
-            if (_triggeredOnce)
-                Destroy(gameObject);
+            return true;
         }
+
+        return false;
     }
 }
