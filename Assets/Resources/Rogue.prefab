@@ -14,7 +14,10 @@ GameObject:
   - component: {fileID: 7481452419731042327}
   - component: {fileID: 8698796182792017940}
   - component: {fileID: 4006466673045172640}
-  - component: {fileID: 6451557708541974035}
+
+  - component: {fileID: 43229017845209695}
+  - component: {fileID: 2971226837240527820}
+
   m_Layer: 0
   m_Name: Rogue
   m_TagString: Player
@@ -36,7 +39,9 @@ Transform:
   m_Children:
   - {fileID: 3634553506144673600}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+
+  m_RootOrder: 0
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2600090251514793707
 SpriteRenderer:
@@ -169,12 +174,14 @@ MonoBehaviour:
   hp: 0
   spellRange: 0
   speed: 4
-  jumpForce: 7
+
+  jumpForce: 14
+
   groundDistanceCheck: 0.1
   attackDamage: 10
   groundMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   rigidbody: {fileID: 7481452419731042327}
   spriteRenderer: {fileID: 2600090251514793707}
   animator: {fileID: 4006466673045172640}
@@ -203,7 +210,9 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6451557708541974035
+
+--- !u!114 &43229017845209695
+
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,19 +238,22 @@ MonoBehaviour:
       m_Calls: []
   _onDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8698796182792017940}
-        m_TargetAssemblyTypeName: HeroSM, Assembly-CSharp
-        m_MethodName: die
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+
+      m_Calls: []
+--- !u!114 &2971226837240527820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364615431248381655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54ea006adffe6544a03b44ca5c4e7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeEffects: []
+
 --- !u!1 &4250726167890205226
 GameObject:
   m_ObjectHideFlags: 0
