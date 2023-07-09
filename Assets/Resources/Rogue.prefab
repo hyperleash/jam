@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8698796182792017940}
   - component: {fileID: 4006466673045172640}
   - component: {fileID: 43229017845209695}
+  - component: {fileID: 2971226837240527820}
   m_Layer: 0
   m_Name: Rogue
   m_TagString: Player
@@ -230,6 +231,19 @@ MonoBehaviour:
   _onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2971226837240527820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364615431248381655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54ea006adffe6544a03b44ca5c4e7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeEffects: []
 --- !u!1 &4250726167890205226
 GameObject:
   m_ObjectHideFlags: 0
