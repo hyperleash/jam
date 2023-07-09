@@ -26,7 +26,7 @@ public class HealthBehaviour : MonoBehaviour
                 if (_invisibilityFrameCount > 0) // In invisibility frame and cannot lose life.
                     return;
 
-                AddInvisibilityFrames(); // Add invisibility if losing life.
+                InvisibilityFrame(_invisibilityDuration, default).Forget(); // Add invisibility if losing life.
             }
 
             OnHealthChangedCallback((value, value - _health));
@@ -91,7 +91,6 @@ public class HealthBehaviour : MonoBehaviour
 
     private int _invisibilityFrameCount;
 
-    public void AddInvisibilityFrames() => AddInvisibilityFrames(_invisibilityDuration);
     public void AddInvisibilityFrames(float duration) => InvisibilityFrame(duration, default).Forget();
     public CancellationTokenSource AddInvisibilityFramesWithCancellation(float duration)
     {

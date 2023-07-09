@@ -20,7 +20,7 @@ public class InvisibilityFrameEffect : Effect
     {
         if (_cancellationTokenSource is null)
             return;
-
+        Debug.Log("cancel!");
         _cancellationTokenSource.Cancel();
         _cancellationTokenSource.Dispose();
     }
