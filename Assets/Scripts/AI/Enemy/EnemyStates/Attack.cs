@@ -30,7 +30,7 @@ public class Attack : BaseState
             sm.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        if(sm.castFinished){
+        if(!sm.playerToLeft() && !sm.playerToRight()){
             stateMachine.ChangeState(sm.patrolState);
         }
 

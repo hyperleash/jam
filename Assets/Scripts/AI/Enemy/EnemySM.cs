@@ -66,10 +66,6 @@ public class EnemySM : StateMachine
             patrol = false;
         }
 
-        if (other.gameObject == patrol2)
-        {
-            patrol = false;
-        }
 
         if (other.gameObject.tag == "Player"){
             other.gameObject.GetComponent<HealthBehaviour>().Health = other.gameObject.GetComponent<HealthBehaviour>().Health - attackDamage;
@@ -99,4 +95,61 @@ public class EnemySM : StateMachine
     protected void finishCast(){
         castFinished = true;
     }
+
+    public bool playerToRight(){
+        Vector2 rayStartRight = (Vector2)transform.position;
+        
+
+        rayStartRight.y = rayStartRight.y - gameObject.GetComponent<Collider2D>().bounds.size.y/2 + 1f;
+        
+
+        rayStartRight.x = rayStartRight.x + (gameObject.GetComponent<Collider2D>().bounds.size.x/2 + 0.1f);
+       
+
+        RaycastHit2D rightHit = Physics2D.Raycast(rayStartRight, Vector2.right , spellRange);
+       
+        
+        Debug.DrawRay(rayStartRight, Vector2.right * spellRange, Color.green, 0);
+        
+
+        if(rightHit.collider != null){
+          
+            Debug.DrawRay(rayStartRight, Vector2.right * spellRange, Color.blue, 0);
+            
+            if(rightHit.collider.gameObject.tag == "Player"){
+                Debug.DrawRay(rayStartRight, Vector2.right * spellRange, Color.red, 0);
+                
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool playerToLeft(){
+        Vector2 rayStartLeft = (Vector2)transform.position;
+        rayStartLeft.y = rayStartLeft.y - gameObject.GetComponent<Collider2D>().bounds.size.y/2 + 1f;
+        rayStartLeft.x = rayStartLeft.x - (gameObject.GetComponent<Collider2D>().bounds.size.x/2 + 0.1f);
+
+        RaycastHit2D leftHit = Physics2D.Raycast(rayStartLeft, Vector2.left , spellRange);
+
+        Debug.DrawRay(rayStartLeft, Vector2.left * spellRange, Color.green, 0);
+
+
+        if(leftHit.collider != null){
+          
+            Debug.DrawRay(rayStartLeft, Vector2.left * spellRange, Color.blue, 0);
+            
+            if(leftHit.collider.gameObject.tag == "Player"){
+
+                Debug.DrawRay(rayStartLeft, Vector2.left * spellRange, Color.red, 0);
+                
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
 }
