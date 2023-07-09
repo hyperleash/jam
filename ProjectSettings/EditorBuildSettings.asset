@@ -5,6 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/MainMenu.unity
+    guid: 62e860fa397c12c41988cc4bf0ebd4f0
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/Select.unity
+    guid: 3501814035b90bb45b6f1e9b87a29a0c
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/Level0.unity
+    guid: 5b28c9b1b7cd8714a972688f9c6aef61
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
@@ -14,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/HeroEffectTestScene.unity
     guid: 4bb3abbee8d154349a5dd011bbccad6e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DialogueTestScene.unity
     guid: 031cea0f4ee3562428a7ed32e121a66b
   m_configObjects: {}

@@ -23,7 +23,6 @@ public class CancelOnHitEffect : Effect
                 {
                     outEffectBehaviour.RemoveEffectWithId(_idToCancel);
                     outHealthBehaviour.OnHealthChangingCallback -= OnHealthChaning;
-                    outHealthBehaviour.AddInvisibilityFrames(); // Add normal invisibility frame after dodging damage.
 
                     Destroy(this);
                 }
