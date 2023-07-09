@@ -30,7 +30,7 @@ public class InteractBehaviour : MonoBehaviour
 
     public void MoveCursor(InputAction.CallbackContext context)
     {
-        if (_dragging is null)  // If not dragging anything.
+        if (_dragging == null)  // If not dragging anything.
             return;
 
         if (context.performed)
@@ -103,14 +103,14 @@ public class InteractBehaviour : MonoBehaviour
         }
         else if (context.canceled)
         {
-            if (_ghostCollider is not null)
+            if (_ghostCollider != null)
             {
                 Destroy(_ghostCollider.gameObject);
                 _ghostCollider = null;
                 _ghostSprite = null;
             }
 
-            if (_dragging is not null)
+            if (_dragging != null)
             {
                 PlaceGameObject(ref _dragging);
                 _dragging = null;
@@ -125,7 +125,7 @@ public class InteractBehaviour : MonoBehaviour
 
     private bool PlaceGameObject(ref Collider2D collider)
     {
-        if (collider is null)
+        if (collider == null)
             return false;
 
         Vector2 cursorPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).xy_();
