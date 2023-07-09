@@ -18,6 +18,9 @@ public class HealthBehaviour : MonoBehaviour
             if (_health == value)  // Health is unaffected.
                 return;
 
+            OnHealthChangingCallback((value, value - _health));
+            _onHealthChanging.Invoke(value);
+
             if (value < _health)
             {
                 if (_invisibilityFrameCount > 0) // In invisibility frame and cannot lose life.
@@ -65,6 +68,7 @@ public class HealthBehaviour : MonoBehaviour
         }
     }
 
+    public event Action<(int health, int change)> OnHealthChangingCallback = delegate { };
     public event Action<(int health, int change)> OnHealthChangedCallback = delegate { };
     public event Action<(int maxHealth, int change)> OnMaxHealthChangedCallback = delegate { };
     public event Action OnDeathCallback = delegate { };
@@ -76,6 +80,8 @@ public class HealthBehaviour : MonoBehaviour
     [SerializeField, Min(0)]
     private float _invisibilityDuration = 1;
 
+    [SerializeField]
+    private UnityEvent<int> _onHealthChanging;
     [SerializeField]
     private UnityEvent<int> _onHealthChanged;
     [SerializeField]
@@ -96,15 +102,21 @@ public class HealthBehaviour : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        if (_health > _maxHealth)
+        if (_health > _maxHealth)                                                                            
             _health = _maxHealth;
     }
 #endif
 
-    private async UniTask InvisibilityFrame(float duration, CancellationToken cancellationToken)
+    private async UniTaskVoid InvisibilityFrame(float duration, CancellationToken cancellationToken)
     {
         _invisibilityFrameCount++;
-        await UniTask.WaitForSeconds(duration, cancellationToken: cancellationToken);
-        _invisibilityFrameCount--;
+
+        duration = float.IsInfinity(duration) ? 1_000_000 : duration;
+        float startTime = Time.time;
+
+        while ((duration + startTime > Time.time) && !cancellationToken.IsCancellationRequested)
+            await UniTask.WaitForFixedUpdate();
+
+         _invisibilityFrameCount--;
     }
 }

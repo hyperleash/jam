@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165c5df4a7d7abc42a4d511ac05239c8, type: 3}
   m_Name: DamageEffect
   m_EditorClassIdentifier: 
-  _duration: 4
+  _duration: 0
   _healthChange: -20

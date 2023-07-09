@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7481452419731042327}
   - component: {fileID: 8698796182792017940}
   - component: {fileID: 4006466673045172640}
+  - component: {fileID: -6224220132812109308}
+  - component: {fileID: -3829676074225531589}
   m_Layer: 0
   m_Name: Rogue
   m_TagString: Untagged
@@ -166,6 +168,7 @@ MonoBehaviour:
   grounded: 0
   jump: 0
   hp: 0
+  spellRange: 0
   speed: 5
   jumpForce: 10
   groundDistanceCheck: 0.1
@@ -176,8 +179,10 @@ MonoBehaviour:
   rigidbody: {fileID: 7481452419731042327}
   spriteRenderer: {fileID: 2600090251514793707}
   animator: {fileID: 4006466673045172640}
-  attackingState: {fileID: 0}
   attackHitbox: {fileID: 0}
+  spell: {fileID: 0}
+  spellTarget: {x: 0, y: 0}
+  castFinished: 0
 --- !u!95 &4006466673045172640
 Animator:
   serializedVersion: 5
@@ -199,6 +204,43 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6224220132812109308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364615431248381655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d25ed6b6b9d854a8b14c514efa1503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _maxHealth: 100
+  _invisibilityDuration: 1
+  _onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _onMaxHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-3829676074225531589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364615431248381655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54ea006adffe6544a03b44ca5c4e7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeEffects: []
 --- !u!1 &4250726167890205226
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,19 +12,22 @@ public class CancelOnHitEffect : Effect
     {
         if (behaviour.TryGetComponent(out HealthBehaviour outHealthBehaviour))
         {
-            outHealthBehaviour.OnHealthChangedCallback += x => 
-            { 
-                if (x.change < 0) // If the player is taking damage.
-                {
-                    if (behaviour.TryGetComponent(out EffectBehaviour outEffectBehaviour))
-                    {
-                        outEffectBehaviour.RemoveEffectWithId(_idToCancel);
+            outHealthBehaviour.OnHealthChangingCallback += OnHealthChaning;
+        }
 
-                        if (this != null)
-                            Destroy(this);
-                    }
+        void OnHealthChaning((int health, int change) value)
+        {
+            if (value.change < 0) // If the player is taking damage.
+            {
+                if (behaviour.TryGetComponent(out EffectBehaviour outEffectBehaviour))
+                {
+                    outEffectBehaviour.RemoveEffectWithId(_idToCancel);
+                    outHealthBehaviour.OnHealthChangingCallback -= OnHealthChaning;
+
+                    Destroy(this);
                 }
-            };
+            }
         }
     }
+
 }

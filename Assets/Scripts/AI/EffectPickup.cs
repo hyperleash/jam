@@ -18,10 +18,11 @@ public class EffectPickup : MonoBehaviour
         {
             foreach (Effect effectInstance in _effectInstances)
             {
-                Effect effect = Instantiate(effectInstance).Initialize(outEffectBehaviour);
+                Effect effect = Instantiate(effectInstance);
                 effect.Duration *= _durationScaling;
                 effect.Id = _id;
                 outEffectBehaviour.AddEffect(effect);
+                effect.Initialize(outEffectBehaviour);
             }
 
             Destroy(gameObject);

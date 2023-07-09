@@ -28,7 +28,7 @@ public class EffectBehaviour : MonoBehaviour
     {
         var toRemove = _activeEffects.Where(x => x.Id == id).ToList();
 
-        for (int i = toRemove.Count; i >= 0; i--)
+        for (int i = toRemove.Count - 1; i >= 0; i--)
             Destroy(toRemove[i]);
     }
 
