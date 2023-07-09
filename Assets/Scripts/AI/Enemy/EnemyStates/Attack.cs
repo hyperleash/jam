@@ -9,17 +9,30 @@ public class Attack : BaseState
     public Attack(EnemySM stateMachine) : base("Attack", stateMachine)
     {
         sm = (EnemySM)this.stateMachine;
+        
     }
 
     public override void Enter()
     {
         base.Enter();
+        sm.spriteRenderer.color = Color.blue;
+        sm.animator.SetBool("attacking", true);
 
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
+
+        if(sm.seekDirection == Vector2.left){
+            sm.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        } else if(sm.seekDirection == Vector2.right){
+            sm.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        if(sm.castFinished){
+            stateMachine.ChangeState(sm.patrolState);
+        }
 
     }
 

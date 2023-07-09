@@ -14,11 +14,12 @@ GameObject:
   - component: {fileID: 7481452419731042327}
   - component: {fileID: 8698796182792017940}
   - component: {fileID: 4006466673045172640}
-  - component: {fileID: -6224220132812109308}
-  - component: {fileID: -3829676074225531589}
+
+  - component: {fileID: 43229017845209695}
+
   m_Layer: 0
   m_Name: Rogue
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +38,7 @@ Transform:
   m_Children:
   - {fileID: 3634553506144673600}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2600090251514793707
 SpriteRenderer:
@@ -168,9 +169,11 @@ MonoBehaviour:
   grounded: 0
   jump: 0
   hp: 0
-  spellRange: 0
+
+  spellRange: 1
+
   speed: 5
-  jumpForce: 10
+  jumpForce: 7
   groundDistanceCheck: 0.1
   attackDamage: 10
   groundMask:
@@ -204,7 +207,9 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-6224220132812109308
+
+--- !u!114 &43229017845209695
+
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,20 +232,21 @@ MonoBehaviour:
       m_Calls: []
   _onDeath:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &-3829676074225531589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2364615431248381655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a54ea006adffe6544a03b44ca5c4e7bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _activeEffects: []
+
+      m_Calls:
+      - m_Target: {fileID: 8698796182792017940}
+        m_TargetAssemblyTypeName: HeroSM, Assembly-CSharp
+        m_MethodName: die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+
 --- !u!1 &4250726167890205226
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3634553506144673600}
   - component: {fileID: 7794523713402125664}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AttackHitbox
   m_TagString: hitbox
   m_Icon: {fileID: 0}

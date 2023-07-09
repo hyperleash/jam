@@ -165,4 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2e9e9951ee04e9babe42373c601601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellDamage: 10
+  spellDamage: 20
