@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 2587224935946709914}
   - component: {fileID: 8419604778505255712}
   - component: {fileID: 3389876102527380250}
+  - component: {fileID: 4093065833944128234}
   m_Layer: 0
   m_Name: Paladin
   m_TagString: Untagged
@@ -113,7 +114,7 @@ Transform:
   m_Children:
   - {fileID: 4143751684913406252}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1837238555151592738
 SpriteRenderer:
@@ -179,7 +180,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 3.0188544
+  m_Mass: 3.0655434
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -226,8 +227,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.31610107, y: 0.034533143}
-  m_Size: {x: 1.6746292, y: 2.1620786}
+  m_Offset: {x: 0.028345108, y: -0.02834344}
+  m_Size: {x: 1.8590126, y: 2.0479646}
   m_Direction: 0
 --- !u!114 &2587224935946709914
 MonoBehaviour:
@@ -295,6 +296,9 @@ MonoBehaviour:
   _health: 100
   _maxHealth: 100
   _invisibilityDuration: 1
+  _onHealthChanging:
+    m_PersistentCalls:
+      m_Calls: []
   _onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -303,4 +307,29 @@ MonoBehaviour:
       m_Calls: []
   _onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2587224935946709914}
+        m_TargetAssemblyTypeName: HeroSM, Assembly-CSharp
+        m_MethodName: die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4093065833944128234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4641612118878080291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54ea006adffe6544a03b44ca5c4e7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeEffects: []
