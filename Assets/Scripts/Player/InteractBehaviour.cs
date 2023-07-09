@@ -118,23 +118,7 @@ public class InteractBehaviour : MonoBehaviour
 
             if (_dragging != null)
             {
-                if (_effectTrigger != null) // If the draggable is an effect trigger.
-                {
-                    int colliderCount = Physics2D.OverlapPointNonAlloc(cursorPoint, _colliding);
-
-                    if (colliderCount >= 0)
-                    {
-                        for (int i = 0; i < colliderCount; i++)
-                        {
-                            if (_colliding[i].TryGetComponent(out EffectBehaviour outEffectBehaviour))
-                            {
-                                _effectTrigger.ApplyEffectsTo(outEffectBehaviour.gameObject);
-                                Destroy(_effectTrigger.gameObject);
-                            }
-                        }
-                    }
-                }
-                else
+                if (!ApplyEffect(cursorPoint)) // Place if nothing is applied.
                     PlaceGameObject(ref _dragging, cursorPoint);
 
                 _dragging = null;
@@ -147,6 +131,29 @@ public class InteractBehaviour : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
+    }
+
+    private bool ApplyEffect(Vector2 cursorPoint)
+    {
+        if (_effectTrigger != null) // If the draggable is an effect trigger.
+        {
+            int colliderCount = Physics2D.OverlapPointNonAlloc(cursorPoint, _colliding);
+
+            if (colliderCount >= 0)
+            {
+                for (int i = 0; i < colliderCount; i++)
+                {
+                    if (_colliding[i].TryGetComponent(out EffectBehaviour outEffectBehaviour))
+                    {
+                        _effectTrigger.ApplyEffectsTo(outEffectBehaviour.gameObject);
+                        Destroy(_effectTrigger.gameObject);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     private bool PlaceGameObject(ref Collider2D collider, Vector2 cursorPoint)
