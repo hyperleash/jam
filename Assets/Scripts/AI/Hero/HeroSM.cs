@@ -91,5 +91,9 @@ public class HeroSM : StateMachine
         castFinished = true;
     }
 
+    public void die(){
+        Destroy(gameObject);
+    }
+
     
 }
