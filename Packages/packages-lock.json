@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "com.celezt.asyncdialogue": {
+      "version": "https://github.com/Celezt/UnityAsyncDialogueSystem.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1",
+        "com.unity.timeline": "1.7.4"
+      },
+      "hash": "8a49890e9c0542160dc12f4e76cc56f1d8d314f3"
+    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
@@ -194,6 +204,13 @@
     },
     "com.unity.mathematics": {
       "version": "1.2.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {},

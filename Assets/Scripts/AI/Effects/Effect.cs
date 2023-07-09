@@ -51,7 +51,8 @@ public class Effect : ScriptableObject
         while ((duration + startTime > Time.time) && !cancellationToken.IsCancellationRequested)
             await UniTask.WaitForFixedUpdate();
 
-        Destroy(this);
+        if (!cancellationToken.IsCancellationRequested)
+            Destroy(this);
     }
 
     private void OnDestroy()
