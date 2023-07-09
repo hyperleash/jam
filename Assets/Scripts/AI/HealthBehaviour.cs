@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,12 +18,15 @@ public class HealthBehaviour : MonoBehaviour
             if (_health == value)  // Health is unaffected.
                 return;
 
+            OnHealthChangingCallback((value, value - _health));
+            _onHealthChanging.Invoke(value);
+
             if (value < _health)
             {
                 if (_invisibilityFrameCount > 0) // In invisibility frame and cannot lose life.
                     return;
 
-                InvisibilityFrame(_invisibilityDuration).Forget(); // Add invisibility if losing life.
+                InvisibilityFrame(_invisibilityDuration, default).Forget(); // Add invisibility if losing life.
             }
 
             OnHealthChangedCallback((value, value - _health));
@@ -64,6 +68,7 @@ public class HealthBehaviour : MonoBehaviour
         }
     }
 
+    public event Action<(int health, int change)> OnHealthChangingCallback = delegate { };
     public event Action<(int health, int change)> OnHealthChangedCallback = delegate { };
     public event Action<(int maxHealth, int change)> OnMaxHealthChangedCallback = delegate { };
     public event Action OnDeathCallback = delegate { };
@@ -76,6 +81,8 @@ public class HealthBehaviour : MonoBehaviour
     private float _invisibilityDuration = 1;
 
     [SerializeField]
+    private UnityEvent<int> _onHealthChanging;
+    [SerializeField]
     private UnityEvent<int> _onHealthChanged;
     [SerializeField]
     private UnityEvent<int> _onMaxHealthChanged;
@@ -84,20 +91,32 @@ public class HealthBehaviour : MonoBehaviour
 
     private int _invisibilityFrameCount;
 
-    public void AddInvisibilityFrames(float duration) => InvisibilityFrame(duration).Forget();
+    public void AddInvisibilityFrames(float duration) => InvisibilityFrame(duration, default).Forget();
+    public CancellationTokenSource AddInvisibilityFramesWithCancellation(float duration)
+    {
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        InvisibilityFrame(duration, cancellationTokenSource.Token).Forget();
+        return cancellationTokenSource;
+    }
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        if (_health > _maxHealth)
+        if (_health > _maxHealth)                                                                            
             _health = _maxHealth;
     }
 #endif
 
-    private async UniTask InvisibilityFrame(float duration)
+    private async UniTaskVoid InvisibilityFrame(float duration, CancellationToken cancellationToken)
     {
         _invisibilityFrameCount++;
-        await UniTask.WaitForSeconds(duration);
-        _invisibilityFrameCount--;
+
+        duration = float.IsInfinity(duration) ? 1_000_000 : duration;
+        float startTime = Time.time;
+
+        while ((duration + startTime > Time.time) && !cancellationToken.IsCancellationRequested)
+            await UniTask.WaitForFixedUpdate();
+
+         _invisibilityFrameCount--;
     }
 }
