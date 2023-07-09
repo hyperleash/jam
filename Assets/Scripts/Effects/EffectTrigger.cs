@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EffectPickup : MonoBehaviour
+public class EffectTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private string _id;
-    [SerializeField]
-    private float _durationScaling = 1f; 
-    [SerializeField]
-    private Effect[] _effectInstances;
+    [SerializeField] private string _id;
+    [SerializeField] private float _durationScaling = 1f;
+    [SerializeField] private bool _triggeredOnce = true;
+    [SerializeField] private Effect[] _effectInstances;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,7 +23,8 @@ public class EffectPickup : MonoBehaviour
                 effect.Initialize(outEffectBehaviour);
             }
 
-            Destroy(gameObject);
+            if (_triggeredOnce)
+                Destroy(gameObject);
         }
     }
 }

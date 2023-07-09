@@ -838,6 +838,10 @@ PrefabInstance:
       propertyPath: _health
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 43229017845209695, guid: 6958179485e734007aa4f935ffffac81, type: 3}
+      propertyPath: _health
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2364615431248381655, guid: 6958179485e734007aa4f935ffffac81, type: 3}
       propertyPath: m_Name
       value: Rogue
@@ -913,11 +917,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9163740932006308714, guid: cb950d427cdba534f88a6b6826febb19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.11
+      value: 0.505
       objectReference: {fileID: 0}
     - target: {fileID: 9163740932006308714, guid: cb950d427cdba534f88a6b6826febb19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.49
+      value: -0.824
       objectReference: {fileID: 0}
     - target: {fileID: 9163740932006308714, guid: cb950d427cdba534f88a6b6826febb19, type: 3}
       propertyPath: m_LocalPosition.z

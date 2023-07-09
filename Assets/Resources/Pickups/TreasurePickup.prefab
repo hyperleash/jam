@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 774496838755719516, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 774496838755719516, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 774496838755719516, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1742282764814253195, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -18,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1742282764814253195, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1742282764814253195, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -99,7 +111,7 @@ PrefabInstance:
     - target: {fileID: 8443201903662466831, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2032181407, guid: 3d3df3f1ff512f5449c5de2e305091c6, type: 3}
+      objectReference: {fileID: 21300000, guid: d9bd66490f4648f45a8c22cf0d29f5ad, type: 3}
     - target: {fileID: 8443201903662466831, guid: 94912361b8d8cfb48bbd53be7831b4ff, type: 3}
       propertyPath: m_Color.b
       value: 0

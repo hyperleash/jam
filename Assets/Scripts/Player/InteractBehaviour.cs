@@ -58,7 +58,6 @@ public class InteractBehaviour : MonoBehaviour
                 if (((1 << collider.gameObject.layer) & _interactableMask) != 0)
                 {
                     _dragging = collider;
-                    _dragging.isTrigger = true;
 
                     if (_dragging.TryGetComponent<SpriteRenderer>(out var outSpriteRenderer))
                     {
