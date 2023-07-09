@@ -23,6 +23,7 @@ public class InteractBehaviour : MonoBehaviour
     private Collider2D _dragging;
     private Collider2D _ghostCollider;
     private SpriteRenderer _ghostSprite;
+    private EffectTrigger _effectTrigger;
     private Camera _camera;
 
     private Collider2D[] _colliding = new Collider2D[32];
@@ -33,9 +34,11 @@ public class InteractBehaviour : MonoBehaviour
         if (_dragging == null)  // If not dragging anything.
             return;
 
+        Vector2 cursorPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).xy_();
+
         if (context.performed)
         {
-            if (PlaceGameObject(ref _ghostCollider))
+            if (PlaceGameObject(ref _ghostCollider, cursorPoint))
                 _ghostSprite.enabled = true; 
             else
                 _ghostSprite.enabled = false; // Hide if there is no valid placeable location
@@ -44,6 +47,8 @@ public class InteractBehaviour : MonoBehaviour
 
     public void DragAndDrop(InputAction.CallbackContext context)
     {
+        Vector2 cursorPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).xy_();
+
         if (context.started)
         {
             int hitCount = Physics2D.GetRayIntersectionNonAlloc(_camera.ScreenPointToRay(Mouse.current.position.ReadValue()), _hits);
@@ -58,6 +63,7 @@ public class InteractBehaviour : MonoBehaviour
                 if (((1 << collider.gameObject.layer) & _interactableMask) != 0)
                 {
                     _dragging = collider;
+                    _effectTrigger = _dragging.GetComponent<EffectTrigger>();
 
                     if (_dragging.TryGetComponent<SpriteRenderer>(out var outSpriteRenderer))
                     {
@@ -112,9 +118,13 @@ public class InteractBehaviour : MonoBehaviour
 
             if (_dragging != null)
             {
-                PlaceGameObject(ref _dragging);
+                if (!ApplyEffect(cursorPoint)) // Place if nothing is applied.
+                    PlaceGameObject(ref _dragging, cursorPoint);
+
                 _dragging = null;
             }
+
+            _effectTrigger = null;
         }
     }
 
@@ -123,12 +133,34 @@ public class InteractBehaviour : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private bool PlaceGameObject(ref Collider2D collider)
+    private bool ApplyEffect(Vector2 cursorPoint)
+    {
+        if (_effectTrigger != null) // If the draggable is an effect trigger.
+        {
+            int colliderCount = Physics2D.OverlapPointNonAlloc(cursorPoint, _colliding);
+
+            if (colliderCount >= 0)
+            {
+                for (int i = 0; i < colliderCount; i++)
+                {
+                    if (_colliding[i].TryGetComponent(out EffectBehaviour outEffectBehaviour))
+                    {
+                        _effectTrigger.ApplyEffectsTo(outEffectBehaviour.gameObject);
+                        Destroy(_effectTrigger.gameObject);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private bool PlaceGameObject(ref Collider2D collider, Vector2 cursorPoint)
     {
         if (collider == null)
             return false;
 
-        Vector2 cursorPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()).xy_();
         Vector2 currentPoint = new Vector2(
             Mathf.Round(cursorPoint.x / _tileSizeSnapping) * _tileSizeSnapping, cursorPoint.y);
 
