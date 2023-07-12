@@ -28,7 +28,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1580757268457362975}
+  - {fileID: 2445924734108555446}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,6 +45,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6455150298762522672}
     m_Modifications:
+    - target: {fileID: 132277277516266125, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132277277516266125, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2208438088326657240, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -133,6 +141,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3460194052379242977, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+      propertyPath: _bindReference
+      value: 
+      objectReference: {fileID: 5311799833436722385}
+    - target: {fileID: 3460194052379242977, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+      propertyPath: _parameterName
+      value: MasterVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173480921363765412, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173480921363765412, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173480921363765412, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4201961311480797012, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
       propertyPath: m_Name
       value: VolumeSlider
@@ -146,8 +174,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
---- !u!224 &1580757268457362975 stripped
+--- !u!224 &2445924734108555446 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2887581404891857798, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2021252254786325807, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
   m_PrefabInstance: {fileID: 4466802964758975897}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5311799833436722385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8379519331421602120, guid: 6b33ffdfebe912d4e8e01f80d0219059, type: 3}
+  m_PrefabInstance: {fileID: 4466802964758975897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
