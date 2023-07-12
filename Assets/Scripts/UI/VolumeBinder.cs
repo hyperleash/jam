@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,18 +18,22 @@ public class VolumeBinder : MonoBehaviour
         if (string.IsNullOrWhiteSpace(_parameterName))
             return;
 
-        _audioMixer.SetFloat(_parameterName, Mathf.Log10(value) * 20);
+        _audioMixer.SetFloat(_parameterName, Mathf.Log10(value) * 20.0f);
     }
 
-    private void OnEnable()
+    private async void OnEnable()
     {
+        await UniTask.Yield();
+
         if (_bindReference == null)
             return;
 
         switch (_bindReference)
         {
             case Slider slider:
-                SetLevel(slider.value);
+                if (_audioMixer.GetFloat(_parameterName, out float outMasterLevel))
+                    slider.value = Mathf.Pow(10, outMasterLevel / 20.0f);
+
                 slider.onValueChanged.AddListener(SetLevel);
                 break;
             default:
