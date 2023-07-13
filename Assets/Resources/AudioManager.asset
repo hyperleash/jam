@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: AudioManager
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: 3063745f478e9484fafc5f776373bd10, type: 2}
+  _volumeParameters:
+  - master
+  - music
+  - sfx
+  - voice
