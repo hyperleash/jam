@@ -35,7 +35,7 @@ public class AudioManager : ScriptableObject
         if (!_isInitialized)
         {
             await UniTask.Yield();
-            SaveAudioSettings();
+            LoadAudioSettings();
             _isInitialized = true;
         }
     }
