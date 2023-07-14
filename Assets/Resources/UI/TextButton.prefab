@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6729577865974795752}
   - component: {fileID: 3204415580515243744}
   - component: {fileID: 6638843672463403459}
-  - component: {fileID: 617507261819199094}
+  - component: {fileID: 8983036703887420130}
   - component: {fileID: 5859994954770565861}
   m_Layer: 5
   m_Name: TextButton
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &617507261819199094
+--- !u!114 &8983036703887420130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 131967609962194672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 266537010df2f7d42a0c51583f328c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  betterTransitions: []
 --- !u!114 &5859994954770565861
 MonoBehaviour:
   m_ObjectHideFlags: 0
